@@ -1,3 +1,9 @@
+
+/* This function generates random Colors for the squares by using Math.random 
+for each rgb color. It also reduces the opacity by about 10% each time until
+the opacity becomes 0.    */
+
+
 const squareColor = (e)=>{
     const red = Math.floor(Math.random() * 256)
     const green = Math.floor(Math.random() * 256)
@@ -10,36 +16,49 @@ const squareColor = (e)=>{
     {
         e.target.style.opacity = (Number(e.target.style.opacity) - 0.1).toString()
     }
-    /*
-    console.log(e.target.style.opacity)
-    if(Number(e.target.style.opacity) > 0)
-    {
-        e.target.style.opacity = (Number(e.target.style.opacity) - 0.1).toString()
-    }
-        */
+
     console.log(e.target.style.opacity)
     e.target.style.backgroundColor = `rgb(${red} , ${green} , ${blue})`
 
 }
 
+/* This function generates the grid by using two loops. The outer loop creates
+the rows and the inner loop generates the squares for each row. The white 
+background color is added to each square so that the grid is visible */
 
-
-let squares = 16
-const container = document.querySelector('.container')
-for(let rows = 0; rows < squares ; rows = rows + 1)
-{
-    const row = document.createElement('div')
-    for(let cols =0; cols < squares; cols = cols + 1)
+const generateGrid = (squares)=> {
+    const container = document.querySelector('.container')
+    for(let rows = 0; rows < squares ; rows = rows + 1)
     {
-        const square = document.createElement('div')
-        square.style.backgroundColor = 'white'
-        square.classList.add('column')
-        square.addEventListener('mouseover' , squareColor)
-        row.appendChild(square)
+        const row = document.createElement('div')
+        for(let cols =0; cols < squares; cols = cols + 1)
+        {
+            const square = document.createElement('div')
+            square.style.backgroundColor = 'white'
+            square.classList.add('column')
+            square.addEventListener('mouseover' , squareColor)
+            row.appendChild(square)
+
+        }
+        row.classList.add('row')
+        container.appendChild(row)
+    
 
     }
-    row.classList.add('row')
-    container.appendChild(row)
- 
+}
+
+const resetGrid = ()=> {
+    const body = document.querySelector('body')
+    let container = document.querySelector('.container')
+    container.remove()
+     container = document.createElement('div')
+     container.classList.add('container')
+     body.appendChild(container)
+     //generateGrid(30)
+
 
 }
+
+generateGrid(16)
+const button = document.querySelector('.reset')
+button.addEventListener('click', resetGrid)
