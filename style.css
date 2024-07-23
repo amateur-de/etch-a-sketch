@@ -1,0 +1,30 @@
+body
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.container
+{
+    width: 480px;
+    height: 480px;
+    border: 10px solid black;
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.row
+{
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.column
+{    
+    display: flex;
+    border: 1px solid black;
+    flex: 1 1 auto;
+
+}
