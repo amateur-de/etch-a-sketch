@@ -47,6 +47,9 @@ const generateGrid = (squares)=> {
     }
 }
 
+/* The function below generates a new grid based upon the input of the user.
+   For performance reasons, values greater than 100 are not accepted:  */
+
 const resetGrid = ()=> {
     const body = document.querySelector('body')
     let container = document.querySelector('.container')
@@ -54,7 +57,12 @@ const resetGrid = ()=> {
      container = document.createElement('div')
      container.classList.add('container')
      body.appendChild(container)
-     //generateGrid(30)
+    let dimensions =Number( prompt('Enter an integer value between 1 and 100:'))
+    while( dimensions < 1 || dimensions > 100)
+    {
+        dimensions =Number( prompt('Enter an integer value between 1 and 100:'))
+    }
+    generateGrid(dimensions)
 
 
 }
